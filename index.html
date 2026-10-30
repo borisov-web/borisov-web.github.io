@@ -1264,21 +1264,108 @@
             <div class="animate_top w-full nn/5 vo/3 vk sg hh sm yh tq">
 
 
-<form
+<!--<form
   action="https://formsubmit.co/alex.borisov.web@gmail.com"
   method="POST"
   class="space-y-6"
 >
-  <!-- Защита от спама -->
+
   <input type="hidden" name="_captcha" value="false">
 
-  <!-- Куда редиректить после отправки -->
+
   <input
     type="hidden"
     name="_next"
     value="https://borisov-web.github.io/thanks.html"
   >
 
+  <div class="tc sf yo ap zf ep qb">
+
+    <div class="vd to/2">
+      <label class="rc ac" for="fullname">Имя</label>
+
+      <input
+        type="text"
+        name="fullname"
+        id="fullname"
+        placeholder="Введите ваше имя"
+        required
+        class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi"
+      />
+    </div>
+
+
+    <div class="vd to/2">
+      <label class="rc ac" for="lastname">Фамилия</label>
+
+      <input
+        type="text"
+        name="lastname"
+        id="lastname"
+        placeholder="Введите вашу фамилию"
+        required
+        class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi"
+      />
+    </div>
+  </div>
+
+  <div class="tc sf yo ap zf ep qb">
+
+    <div class="vd to/2">
+      <label class="rc ac" for="phone">Телефон</label>
+
+      <input
+        type="tel"
+        name="phone"
+        id="phone"
+        placeholder="+7 (999) 999-99-99"
+        autocomplete="tel"
+        required
+        class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi"
+      />
+    </div>
+
+
+    <div class="vd to/2">
+      <label class="rc ac" for="email">Email</label>
+
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="example@gmail.com"
+        required
+        class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi"
+      />
+    </div>
+  </div>
+
+
+  <div class="fb">
+    <label class="rc ac" for="message">
+      Сообщение (необязательно)
+    </label>
+
+    <textarea
+      placeholder="Введите ваше сообщение"
+      rows="4"
+      name="message"
+      id="message"
+      class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 ci"
+    ></textarea>
+  </div>
+
+
+  <div class="tc xf">
+    <button
+      type="submit"
+      class="vc rg lk gh ml il hi gi _l"
+    >
+      Отправить заявку
+    </button>
+  </div>
+</form>-->
+<form id="my-form" action="https://formspree.io/f/xaeebrpv" method="POST" class="space-y-6">
   <div class="tc sf yo ap zf ep qb">
     <!-- Имя -->
     <div class="vd to/2">
@@ -1365,6 +1452,7 @@
     </button>
   </div>
 </form>
+
 
 
 
@@ -1745,6 +1833,29 @@
   phoneInput.addEventListener('blur', (e) => {
     if (e.target.value === '+7') {
       e.target.value = '';
+    }
+  });
+</script>
+<script>
+  const form = document.getElementById("my-form");
+
+  form.addEventListener("submit", async function(event) {
+    event.preventDefault();
+    const data = new FormData(form);
+
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: data,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      // Перенаправляем на вашу страницу спасибо
+      window.location.href = "https://borisov-web.github.io/thanks.html";
+    } else {
+      alert("Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.");
     }
   });
 </script>
